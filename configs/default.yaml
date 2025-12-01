@@ -1,0 +1,11 @@
+data_root: ./data/tmed2
+img_size: 112
+batch_size: 1
+epochs: 15
+lr: 2.0e-4
+lambda_sa: 0.5
+model: samil
+backbone: resnet18
+use_bag_contrastive: true
+use_transformer_pool: false
+save_dir: ./results/default
