@@ -1,0 +1,7 @@
+variants:
+  - {name: "samil_base", lambda_sa: 0.5, use_transformer_pool: false, use_focal_kl: false}
+  - {name: "no_contrastive", lambda_sa: 0.5, use_transformer_pool: false, use_bag_contrastive: false}
+  - {name: "lambda_0.0", lambda_sa: 0.0, use_transformer_pool: false}
+  - {name: "lambda_1.0", lambda_sa: 1.0, use_transformer_pool: false}
+  - {name: "transformer_pool", lambda_sa: 0.5, use_transformer_pool: true}
+  - {name: "focal_kl", lambda_sa: 0.5, use_transformer_pool: false, use_focal_kl: true, gamma: 2.0}
