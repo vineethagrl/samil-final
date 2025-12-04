@@ -1,4 +1,4 @@
-data_root: ./data/tmed2
+data_root: "unused_dummy_path"
 img_size: 96
 batch_size: 1
 epochs: 8
