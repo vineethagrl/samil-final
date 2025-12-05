@@ -8,8 +8,8 @@ class TransformerPool(nn.Module):
         self.encoder = nn.TransformerEncoder(layer, num_layers=depth)
         self.cls = nn.Parameter(torch.randn(1,1,d))
 
-    def forward(self, H):       # H: [K,d]
-        x = torch.cat([self.cls, H.unsqueeze(0)], dim=1)  # [1,1+K,d]
+    def forward(self, H):
+        x = torch.cat([self.cls, H.unsqueeze(0)], dim=1)
         y = self.encoder(x)
-        z = y[:,0]                                        # CLS
-        return z.squeeze(0)                               # [d]
+        z = y[:,0]
+        return z.squeeze(0)

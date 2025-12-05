@@ -9,3 +9,5 @@ backbone: resnet18
 use_bag_contrastive: true
 use_transformer_pool: false
 save_dir: ./results/colab_small
+contrastive_weight: 0.1
+contrastive_temp: 0.1

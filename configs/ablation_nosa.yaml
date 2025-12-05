@@ -1,0 +1,10 @@
+data_root: "data"
+img_size: 96
+batch_size: 1
+epochs: 5
+lr: 1e-4
+
+lambda_sa: 0.0
+use_bag_contrastive: false
+
+save_dir: "runs/ablation_nosa"

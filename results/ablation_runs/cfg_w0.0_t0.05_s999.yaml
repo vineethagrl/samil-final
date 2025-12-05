@@ -1,0 +1,13 @@
+backbone: resnet18
+batch_size: 1
+contrastive_temp: 0.05
+contrastive_weight: 0.0
+data_root: ./data/tmed2
+epochs: 8
+img_size: 96
+lambda_sa: 0.5
+lr: 0.0002
+model: samil
+save_dir: ./results/ablation_contrastive/w0.0_t0.05
+use_bag_contrastive: true
+use_transformer_pool: false

@@ -29,7 +29,7 @@ class EchoStudyBags(Dataset):
         for p in sorted(glob.glob(os.path.join(sdir, "*.png"))):
             img = Image.open(p).convert("L")
             imgs.append(self.tf(img))
-        bag = torch.stack(imgs)  # [K,1,H,W]
+        bag = torch.stack(imgs)
         y = self.labels.get(sid, 0)
         return bag, torch.tensor(y), sid
 

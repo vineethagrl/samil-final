@@ -1,0 +1,12 @@
+data_root: "data"
+img_size: 96
+batch_size: 1
+epochs: 5
+lr: 1e-4
+
+lambda_sa: 0.5
+use_transformer_pool: true
+num_heads: 4
+num_layers: 2
+
+save_dir: "runs/ablation_transformer"

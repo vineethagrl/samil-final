@@ -1,0 +1,8 @@
+epoch 0: val balanced-acc=0.500 auroc-ovr=nan
+epoch 1: val balanced-acc=0.500 auroc-ovr=nan
+epoch 2: val balanced-acc=0.500 auroc-ovr=nan
+epoch 3: val balanced-acc=0.500 auroc-ovr=nan
+epoch 4: val balanced-acc=0.500 auroc-ovr=nan
+epoch 5: val balanced-acc=0.500 auroc-ovr=nan
+epoch 6: val balanced-acc=0.500 auroc-ovr=nan
+epoch 7: val balanced-acc=0.500 auroc-ovr=nan

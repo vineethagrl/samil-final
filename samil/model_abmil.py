@@ -5,7 +5,7 @@ class Attention(nn.Module):
     def __init__(self, d):
         super().__init__()
         self.a = nn.Sequential(nn.Linear(d, d), nn.Tanh(), nn.Linear(d, 1))
-    def forward(self, H):                # H: [K,d]
+    def forward(self, H):
         w = self.a(H).squeeze(-1)
         alpha = torch.softmax(w, dim=0)
         Z = (alpha.unsqueeze(-1) * H).sum(0)
@@ -23,9 +23,9 @@ class ABMIL(nn.Module):
         self.att = Attention(att_dim)
         self.cls = nn.Linear(att_dim, num_classes)
 
-    def encode_bag(self, bag):           # [K,1,H,W]
-        feats = self.backbone(bag)       # [K,d]
-        H = self.proj(feats)             # [K,att_dim]
+    def encode_bag(self, bag):
+        feats = self.backbone(bag)
+        H = self.proj(feats)
         return H
 
     def forward(self, bag):
