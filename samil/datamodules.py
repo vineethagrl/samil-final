@@ -2,6 +2,7 @@ import os, glob, torch
 from torch.utils.data import Dataset, DataLoader
 from torchvision import transforms
 from PIL import Image
+import numpy as np
 
 class EchoStudyBags(Dataset):
     def __init__(self, root, split="train", img_size=112):
@@ -33,10 +34,34 @@ class EchoStudyBags(Dataset):
         y = self.labels.get(sid, 0)
         return bag, torch.tensor(y), sid
 
-def make_loaders(root, img_size, bs=1):
-    train = EchoStudyBags(root, "train", img_size)
-    val   = EchoStudyBags(root, "val", img_size)
-    test  = EchoStudyBags(root, "test", img_size)
-    return (DataLoader(train, batch_size=bs, shuffle=True, num_workers=2),
-            DataLoader(val,   batch_size=1, shuffle=False, num_workers=2),
-            DataLoader(test,  batch_size=1, shuffle=False, num_workers=2))
+# Dummy bag dataset for simulated TMED-2
+class DummyBagDataset(Dataset):
+    def __init__(self, num_bags=20, bag_size=8, img_size=112, num_classes=2):
+        self.num_bags = num_bags
+        self.bag_size = bag_size
+        self.img_size = img_size
+        self.num_classes = num_classes
+
+    def __len__(self): return self.num_bags
+
+    def __getitem__(self, idx):
+        # Simulate grayscale (1 channel) echo frames
+        bag = torch.randn(self.bag_size, 1, self.img_size, self.img_size)
+        label = torch.randint(0, self.num_classes, (1,)).item()
+        return bag, torch.tensor(label), f"sim_{idx:03d}"
+
+def make_loaders(root, img_size, bs=1, use_dummy=True):
+    if use_dummy:
+        train = DummyBagDataset(num_bags=100, bag_size=8, img_size=img_size)
+        val   = DummyBagDataset(num_bags=20, bag_size=8, img_size=img_size)
+        test  = DummyBagDataset(num_bags=20, bag_size=8, img_size=img_size)
+    else:
+        train = EchoStudyBags(root, "train", img_size)
+        val   = EchoStudyBags(root, "val", img_size)
+        test  = EchoStudyBags(root, "test", img_size)
+    
+    return (
+        DataLoader(train, batch_size=bs, shuffle=True, num_workers=2),
+        DataLoader(val,   batch_size=1, shuffle=False, num_workers=2),
+        DataLoader(test,  batch_size=1, shuffle=False, num_workers=2)
+    )
